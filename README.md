@@ -3,7 +3,7 @@
 ## Clone this Repo "test_cytoself"
 
 ```code
-git clone https://github.com/YanniSchnellbach/test_cytoself.git
+git clone --recurse-submodules git@github.com:YanniSchnellbach/test_cytoself.git
 ```
 
 

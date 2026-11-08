@@ -30,7 +30,12 @@ train_args = {
     'reducelr_increment': 0.1,
     'earlystop_patience': 6,
 }
-trainer = CytoselfFullTrainer(train_args, homepath='demo_output', model_args=model_args)
+
+
+import torch
+device = 'mps' if torch.backends.mps.is_available() else 'cpu'
+print("Using device:", device)
+trainer = CytoselfFullTrainer(train_args, homepath='demo_output', model_args=model_args, device=device)
 trainer.fit(datamanager, tensorboard_path='tb_logs')
 
 
@@ -80,4 +85,5 @@ ax.set_ylabel('Counts')
 ax.set_xlim([0, x_max])
 ax.set_xticks(x_ticks, analysis.feature_spectrum_indices[x_ticks])
 fig.tight_layout()
-fig.show()
+fig.savefig('demo_output/analysis/feature_spectra_figures/feature_spectrum.png', dpi=300)
+plt.close()
